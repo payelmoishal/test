@@ -1,0 +1,49 @@
+Install package with variables:
+
+
+---
+- hosts: all
+  become: yes
+  vars:
+   pk_http: httpd
+   pk_mysql: mysql
+   pk_php: php
+
+  tasks:
+   - name: Install httpd
+     yum:
+        pkg:
+          - "{{pk_http}}"
+          - "{{pk_mysql}}"
+          - "{{pk_php}}"
+        state: latest
+~                      
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Install package in two line 
+
+---
+- hosts: all
+  become: yes
+  tasks:
+   - name: Install httpd
+     yum:
+        pkg: httpd
+        state: latest
+~                                                                               
+~                       
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Install package in one line 
+
+---
+- hosts: all
+  become: yes
+  tasks:
+   - name: Install httpd
+     yum: pkg=httpd state=latest
+~                                                                               
+~                                                                               
+~                                          
